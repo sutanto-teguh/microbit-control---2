@@ -32,25 +32,46 @@ function Kiri () {
     pins.analogWritePin(AnalogPin.P12, 0)
     pins.analogWritePin(AnalogPin.P15, 150)
 }
-bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    receivedString = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
+bluetooth.onUartDataReceived(serial.delimiters(Delimiters.Hash), function () {
+    receivedString = bluetooth.uartReadUntil(serial.delimiters(Delimiters.Hash))
     if (receivedString == "up") {
         basic.showLeds(`
             . . # . .
-            . # # # .
-            . # # # .
-            . # # # .
+            . . . . .
+            . . . . .
+            . . . . .
             . . . . .
             `)
         Maju()
     }
     if (receivedString == "down") {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . # . .
+            `)
         Mundur()
     }
     if (receivedString == "right") {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . #
+            . . . . .
+            . . . . .
+            `)
         Kanan()
     }
     if (receivedString == "left") {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # . . . .
+            . . . . .
+            . . . . .
+            `)
         Kiri()
     }
     if (receivedString == "stop") {
