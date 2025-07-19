@@ -66,6 +66,7 @@ function Stop () {
     pins.digitalWritePin(DigitalPin.P9, 0)
     pins.digitalWritePin(DigitalPin.P12, 0)
     pins.digitalWritePin(DigitalPin.P15, 0)
+    music.stopAllSounds()
 }
 let receivedString = ""
 bluetooth.startUartService()
