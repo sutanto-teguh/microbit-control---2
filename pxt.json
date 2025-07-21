@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "bluetooth": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "Billy": "github:adamish/pxt-billy#v0.0.25"
     },
     "files": [
         "main.blocks",

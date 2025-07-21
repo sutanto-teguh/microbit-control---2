@@ -78,7 +78,16 @@ bluetooth.onUartDataReceived(serial.delimiters(Delimiters.Hash), function () {
         Stop()
     }
     if (receivedString == "horn") {
+        basic.showIcon(IconNames.Giraffe)
         music.play(music.builtinPlayableSoundEffect(soundExpression.spring), music.PlaybackMode.UntilDone)
+    }
+    if (receivedString == "hallo") {
+        basic.showIcon(IconNames.Heart)
+        billy.say("Hi...how are you?")
+    }
+    if (receivedString == "temp") {
+        basic.showIcon(IconNames.Sword)
+        basic.showNumber(input.temperature())
     }
 })
 function Stop () {
@@ -88,6 +97,13 @@ function Stop () {
     pins.digitalWritePin(DigitalPin.P12, 0)
     pins.digitalWritePin(DigitalPin.P15, 0)
     music.stopAllSounds()
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . # . .
+        . . . . .
+        # . . . #
+        `)
 }
 let receivedString = ""
 bluetooth.startUartService()
