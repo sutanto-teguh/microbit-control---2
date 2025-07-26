@@ -12,6 +12,15 @@ function Kanan () {
     pins.analogWritePin(AnalogPin.P12, 150)
     pins.analogWritePin(AnalogPin.P15, 0)
 }
+function readDistance () {
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    control.waitMicros(2)
+    pins.digitalWritePin(DigitalPin.P1, 1)
+    control.waitMicros(10)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    distance = Math.idiv(pins.pulseIn(DigitalPin.P2, PulseValue.High), 58)
+    basic.pause(100)
+}
 bluetooth.onBluetoothConnected(function () {
     basic.showIcon(IconNames.Happy)
 })
@@ -106,5 +115,6 @@ function Stop () {
         `)
 }
 let receivedString = ""
+let distance = 0
 bluetooth.startUartService()
 basic.showIcon(IconNames.Square)
